@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>宝贝回国啦 · 给哥哥的邀请</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Fredoka:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Fredoka:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&family=Fredoka:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"></noscript>
+<style>
+  :root{
+    --cream: #FFF8F1;
+    --pink: #FFD6E4;
+    --pink-deep: #FF9FBF;
+    --blue: #C6EAF8;
+    --mint: #D7F4E1;
+    --yellow: #FFE9A8;
+    --coral: #FF8A73;
+    --ink: #6B5A52;
+    --ink-soft: #a4948c;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Noto Sans SC', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ---------- PAGE FRAMEWORK ---------- */
+  .page{
+    display:none;
+    min-height:100svh;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding: 9vh 6vw 8vh;
+    text-align:center;
+    position:relative;
+  }
+  .page.active{
+    display:flex;
+    animation: pageIn 0.45s ease;
+  }
+  @keyframes pageIn{
+    from{ opacity:0; transform: translateY(14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  .dots{
+    position:fixed;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:7px;
+    z-index:60;
+  }
+  .dot{
+    width:6px; height:6px;
+    border-radius:50%;
+    background: rgba(107,90,82,0.22);
+    transition: all 0.3s ease;
+  }
+  .dot.active{
+    width:20px;
+    border-radius:4px;
+    background: var(--coral);
+  }
+  .back-btn{
+    position:fixed;
+    top:14px;
+    left:16px;
+    z-index:60;
+    width:34px; height:34px;
+    border-radius:50%;
+    background:#fff;
+    border:none;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    color: var(--ink-soft);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    cursor:pointer;
+  }
+  .back-btn.show{ display:flex; }
+
+  .next-btn{
+    margin-top:42px;
+    padding:14px 32px;
+    background: var(--coral);
+    color:#fff;
+    border:none;
+    border-radius:999px;
+    font-family:'ZCOOL KuaiLe', cursive;
+    font-size:15px;
+    cursor:pointer;
+    box-shadow: 0 6px 0 #e06f5a;
+    transition: transform 0.1s ease;
+  }
+  .next-btn:active{ transform: translateY(4px); box-shadow: 0 2px 0 #e06f5a; }
+
+  /* ---------- PAGE 1 : HERO ---------- */
+  .page1{
+    background:
+      radial-gradient(ellipse 480px 320px at 12% 8%, rgba(198,234,248,0.9), transparent 65%),
+      radial-gradient(ellipse 420px 300px at 88% 14%, rgba(255,214,228,0.65), transparent 65%),
+      radial-gradient(ellipse 520px 360px at 50% 100%, rgba(215,244,225,0.55), transparent 60%),
+      var(--cream);
+    overflow:hidden;
+  }
+  .grain-dots{
+    position:absolute;
+    inset:0;
+    background-image: radial-gradient(rgba(107,90,82,0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+    opacity:0.35;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 30%, transparent 80%);
+    pointer-events:none;
+  }
+  .deco{
+    position:absolute;
+    pointer-events:none;
+    user-select:none;
+    opacity:0.85;
+    animation: driftSoft 7s ease-in-out infinite;
+    filter: drop-shadow(0 6px 10px rgba(107,90,82,0.10));
+  }
+  @keyframes driftSoft{
+    0%,100%{ transform: translateY(0) rotate(-4deg); }
+    50%{ transform: translateY(-10px) rotate(3deg); }
+  }
+  .d1{ top:13%; left:7%; font-size:25px; animation-delay:0s; }
+  .d2{ top:15%; right:8%; font-size:22px; animation-delay:-2.3s; }
+  .d3{ bottom:14%; left:9%; font-size:20px; animation-delay:-4.1s; }
+  .twinkle{
+    position:absolute;
+    pointer-events:none;
+    color: var(--pink-deep);
+    opacity:0.55;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{ opacity:0.2; transform: scale(0.75); }
+    50%{ opacity:0.75; transform: scale(1); }
+  }
+  .t1{ top:34%; left:16%; font-size:13px; animation-delay:0s; }
+  .t2{ top:24%; right:17%; font-size:11px; animation-delay:-1.4s; }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background: transparent;
+    padding:8px 20px;
+    border-radius:999px;
+    border: 1px solid rgba(255,138,115,0.4);
+    font-family:'Fredoka', sans-serif;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.22em;
+    color: var(--coral);
+    margin-bottom:34px;
+  }
+
+  .ticket{
+    position:relative;
+    display:flex;
+    align-items:center;
+    width:min(460px, 88vw);
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(6px);
+    border-radius:16px;
+    padding: 18px 26px;
+    box-shadow: 0 14px 32px rgba(107,90,82,0.10), 0 0 0 1px rgba(255,255,255,0.6);
+  }
+  .ticket::before, .ticket::after{
+    content:'';
+    position:absolute;
+    top:50%;
+    width:16px; height:16px;
+    background: var(--cream);
+    border-radius:50%;
+    transform: translateY(-50%);
+  }
+  .ticket::before{ left:-8px; }
+  .ticket::after{ right:-8px; }
+  .ticket-code{ font-family:'Fredoka', sans-serif; font-weight:600; font-size:16px; color: var(--ink); line-height:1.3; }
+  .ticket-city{ font-size:11px; color: var(--ink-soft); letter-spacing:0.04em; }
+  .ticket-mid{ flex:1; position:relative; height:20px; margin: 0 14px; }
+  .ticket-line{
+    position:absolute; top:50%; left:0; right:0; height:1px;
+    background: repeating-linear-gradient(90deg, var(--pink-deep) 0 6px, transparent 6px 13px);
+    transform: translateY(-50%);
+  }
+  .plane{
+    position:absolute; top:50%; font-size:17px;
+    transform: translate(-50%,-58%);
+    animation: fly 3.6s ease-in-out infinite;
+  }
+  @keyframes fly{ 0%{ left:2%; } 50%{ left:50%; } 100%{ left:98%; } }
+  .ticket-status{
+    position:absolute; bottom:-11px; left:50%; transform: translateX(-50%);
+    background: var(--yellow); color:#7a5c14;
+    font-family:'Fredoka', sans-serif; font-size:9.5px; font-weight:600; letter-spacing:0.1em;
+    padding:3px 10px; border-radius:999px; white-space:nowrap;
+  }
+
+  .title-row{ margin-top:44px; }
+  .hero-title{
+    font-family:'ZCOOL KuaiLe', cursive;
+    font-size: clamp(28px, 6vw, 46px);
+    color: var(--coral);
+    line-height:1.35;
+  }
+  .title-underline{ display:block; margin: 6px auto 0; width:120px; }
+  .title-underline path{
+    fill:none; stroke: var(--pink-deep); stroke-width:3; stroke-linecap:round;
+    stroke-dasharray:160; stroke-dashoffset:160;
+    animation: draw 0.7s ease 0.4s forwards;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  .hero-sub{
+    display:inline-flex; align-items:center; gap:8px; margin-top:24px;
+    font-size: clamp(12.5px, 3.6vw, 14px); color: var(--ink); background:#fff;
+    padding:11px 20px; border-radius:999px; white-space:nowrap;
+    box-shadow: 0 8px 20px rgba(107,90,82,0.08);
+  }
+
+  /* ---------- PAGE 2 : LETTER ---------- */
+  .page2{ background: var(--cream); }
+  .postcard{
+    max-width:600px; width:100%; background: #fff; border-radius:22px;
+    padding: 44px 38px; position:relative;
+    box-shadow: 0 18px 40px rgba(255,138,115,0.16), 0 0 0 1px rgba(255,214,228,0.6);
+  }
+  .tape{
+    position:absolute; width:90px; height:26px;
+    background: repeating-linear-gradient(45deg, var(--mint), var(--mint) 6px, #c5ecd6 6px, #c5ecd6 12px);
+    opacity:0.85; box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  }
+  .tape-left{ top:-14px; left:36px; transform: rotate(-8deg); }
+  .tape-right{ top:-14px; right:36px; transform: rotate(7deg); }
+  .stamp{
+    position:absolute; top:24px; right:28px; width:56px; height:68px;
+    border: 2px dashed var(--pink-deep); border-radius:8px;
+    display:flex; align-items:center; justify-content:center; font-size:22px;
+    background: var(--pink); transform: rotate(7deg);
+  }
+  .postcard-label{ font-family:'ZCOOL KuaiLe', cursive; font-size:14px; color: var(--pink-deep); margin-bottom:16px; }
+  .postcard-body{ font-size: 16px; line-height:2; max-width: 78%; text-align:left; margin:0 auto; }
+  .postcard-sign{ margin-top:24px; font-family:'ZCOOL KuaiLe', cursive; font-size:18px; color: var(--coral); text-align:right; max-width:78%; margin-left:auto; margin-right:auto; }
+  @media (max-width:520px){
+    .postcard{ padding:36px 24px; }
+    .postcard-body, .postcard-sign{ max-width:100%; font-size:15px; }
+    .stamp{ width:46px; height:56px; top:18px; right:18px; }
+  }
+
+  /* ---------- PAGE 3 : ACCEPT / REJECT ---------- */
+  .page3{ background: var(--cream); }
+  .invite-question{
+    font-family:'ZCOOL KuaiLe', cursive;
+    font-size: clamp(20px, 3.8vw, 28px);
+    color: var(--ink);
+    margin-bottom:8px;
+  }
+  .invite-hint{ font-size:13px; color: var(--ink-soft); margin-bottom:30px; }
+  .invite-btn-zone{ position:relative; height:180px; width:min(420px, 88vw); text-align:center; padding-top:20px; }
+  .accept-btn{
+    position:relative; z-index:2; padding:16px 34px;
+    background: var(--coral); color:#fff; border:none; border-radius:999px;
+    font-family:'ZCOOL KuaiLe', cursive; font-size:17px; cursor:pointer;
+    box-shadow: 0 6px 0 #e06f5a; transition: transform 0.1s ease;
+  }
+  .accept-btn:active{ transform: translateY(4px); }
+  .accept-btn.pulse{ animation: acceptPulse 1.4s ease-in-out infinite; }
+  @keyframes acceptPulse{
+    0%,100%{ box-shadow: 0 6px 0 #e06f5a, 0 0 0 0 rgba(255,138,115,0.4); }
+    50%{ box-shadow: 0 6px 0 #e06f5a, 0 0 0 12px rgba(255,138,115,0); }
+  }
+  .reject-btn{
+    position:absolute; z-index:1; top:80px; left:64%;
+    padding:14px 26px; background: #f2ede9; color: var(--ink-soft);
+    border: none; border-radius:999px; font-family:'Noto Sans SC', sans-serif; font-size:14px;
+    cursor:pointer;
+    transition: left 0.28s cubic-bezier(.3,1.4,.5,1), top 0.28s cubic-bezier(.3,1.4,.5,1), transform 0.28s ease, opacity 0.3s ease;
+  }
+  .reject-phrase{
+    position:absolute; z-index:3; font-family:'ZCOOL KuaiLe', cursive; font-size:14px;
+    color: var(--coral); background: var(--yellow); padding:6px 14px; border-radius:999px;
+    white-space:nowrap; opacity:0; pointer-events:none; animation: floatUp 1s ease forwards;
+  }
+  @keyframes floatUp{
+    0%{ opacity:0; transform: translateY(6px) scale(0.8); }
+    20%{ opacity:1; transform: translateY(-6px) scale(1); }
+    80%{ opacity:1; transform: translateY(-26px) scale(1); }
+    100%{ opacity:0; transform: translateY(-38px) scale(0.9); }
+  }
+
+  /* ---------- PAGE 4 : ACTIVITIES ---------- */
+  .page4{ background: var(--cream); }
+  .section-eyebrow{
+    font-family:'Fredoka', sans-serif; font-weight:600; font-size:12px;
+    letter-spacing:0.2em; text-transform:uppercase; color: var(--pink-deep); margin-bottom:10px;
+  }
+  .section-title{
+    font-family:'ZCOOL KuaiLe', cursive; font-size: clamp(22px, 4.2vw, 30px); color: var(--ink); margin-bottom:36px;
+  }
+  .sticker-grid{ display:flex; gap:18px; max-width:520px; flex-wrap:wrap; justify-content:center; }
+  .sticker{
+    width:190px; background:#fff; border-radius:20px; padding: 24px 18px; text-align:center;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.06); transition: transform 0.2s ease;
+  }
+  .sticker:hover{ transform: translateY(-6px) rotate(-1deg); }
+  .sticker:nth-child(1){ background: var(--pink); transform: rotate(-2deg); }
+  .sticker:nth-child(2){ background: var(--blue); transform: rotate(1.5deg); }
+  .sticker:nth-child(3){ background: var(--yellow); transform: rotate(-1.5deg); }
+  .sticker:nth-child(4){ background: var(--mint); transform: rotate(2deg); }
+  .sticker-icon{ font-size:32px; display:block; margin-bottom:10px; }
+  .sticker-name{ font-family:'ZCOOL KuaiLe', cursive; font-size:16px; color: var(--ink); }
+  .sticker-desc{ font-size:12px; color: var(--ink-soft); margin-top:6px; line-height:1.5; }
+
+  /* ---------- PAGE 5 : SCHEDULE ---------- */
+  .page5{ background: var(--cream); }
+  .schedule-card{
+    max-width: 500px; width:100%; background:#fff; border-radius: 26px; padding: 38px 32px;
+    box-shadow: 0 16px 36px rgba(0,0,0,0.06); text-align:left;
+  }
+  .form-group{ margin-bottom:22px; }
+  .form-label{ display:block; font-family:'ZCOOL KuaiLe', cursive; font-size:15px; color: var(--coral); margin-bottom:10px; }
+  input[type="date"], textarea{
+    width:100%; background: #FFF8F1; border: 2px solid var(--pink); border-radius:14px;
+    padding: 13px 16px; color: var(--ink); font-family:'Noto Sans SC', sans-serif; font-size:15px;
+    outline:none; transition: border-color 0.2s ease;
+  }
+  input[type="date"]:focus, textarea:focus{ border-color: var(--coral); }
+  textarea{ resize:vertical; min-height:70px; }
+  .chip-row{ display:flex; gap:10px; flex-wrap:wrap; }
+  .chip{
+    padding:11px 18px; border-radius:999px; border: 2px solid var(--pink); font-size:14px;
+    cursor:pointer; background:#fff; transition: all 0.15s ease; user-select:none;
+  }
+  .chip.selected{ background: var(--coral); border-color: var(--coral); color:#fff; font-weight:700; }
+  .other-input{ margin-top:10px; display:none; }
+  .other-input.show{ display:block; }
+  .submit-btn{
+    width:100%; padding:16px; margin-top:6px; background: var(--coral); color: #fff;
+    border:none; border-radius:999px; font-family:'ZCOOL KuaiLe', cursive; font-size:17px;
+    cursor:pointer; box-shadow: 0 6px 0 #e06f5a; transition: transform 0.1s ease;
+  }
+  .submit-btn:active{ transform: translateY(4px); box-shadow: 0 2px 0 #e06f5a; }
+  .submit-btn:disabled{ opacity:0.5; cursor:not-allowed; }
+  .form-hint{ font-size:12px; color: var(--ink-soft); margin-top:10px; text-align:center; }
+
+  .confirm-board{ display:none; text-align:center; }
+  .confirm-board.show{ display:block; }
+  .confirm-check{ font-size:46px; margin-bottom:14px; }
+  .confirm-title{ font-family:'ZCOOL KuaiLe', cursive; font-size:23px; color: var(--coral); margin-bottom:10px; }
+  .confirm-detail{ font-family:'Fredoka', sans-serif; font-weight:600; color: var(--ink); font-size:16px; margin-bottom:6px; }
+  .confirm-activities{ font-size:14px; color: var(--ink-soft); margin-top:4px; }
+  .confirm-note{ color: var(--ink-soft); font-size:13.5px; margin-top:16px; line-height:1.7; }
+  .reset-link{ display:inline-block; margin-top:20px; font-size:13px; color: var(--pink-deep); cursor:pointer; text-decoration:underline; }
+
+  footer{
+    text-align:center; padding: 24px 6vw; font-size:11.5px; letter-spacing:0.08em; color: var(--ink-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="dots" id="dots"></div>
+<button class="back-btn" id="backBtn">←</button>
+
+<!-- PAGE 1: HERO -->
+<section class="page page1 active" data-page="0">
+  <div class="grain-dots"></div>
+  <div class="deco d1">🧳</div>
+  <div class="deco d2">💌</div>
+  <div class="deco d3">💕</div>
+  <div class="twinkle t1">✨</div>
+  <div class="twinkle t2">✨</div>
+
+  <div class="eyebrow">✈ COMING SOON</div>
+
+  <div class="ticket">
+    <div>
+      <div class="ticket-code">MAN</div>
+      <div class="ticket-city">曼彻斯特</div>
+    </div>
+    <div class="ticket-mid">
+      <div class="ticket-line"></div>
+      <div class="plane">✈️</div>
+    </div>
+    <div>
+      <div class="ticket-code">HGH</div>
+      <div class="ticket-city">杭州</div>
+    </div>
+    <div class="ticket-status">即将起飞</div>
+  </div>
+
+  <div class="title-row">
+    <h1 class="hero-title">宝贝即将抵达啦！</h1>
+    <svg class="title-underline" viewBox="0 0 120 12" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2,8 Q30,2 60,7 T118,6"/>
+    </svg>
+  </div>
+  <div class="hero-sub">哥哥，宝贝飞回杭州来见你啦 🎀</div>
+
+  <button class="next-btn" data-next>下一页 →</button>
+</section>
+
+<!-- PAGE 2: LETTER -->
+<section class="page page2" data-page="1">
+  <div class="postcard">
+    <div class="tape tape-left"></div>
+    <div class="tape tape-right"></div>
+    <div class="stamp">🛫</div>
+    <div class="postcard-label">给哥哥的一封小信 ✉️</div>
+    <div class="postcard-body">
+      哥哥：<br><br>
+      我马上就要结束在曼彻斯特的留学生活，即将飞回杭州啦！这段时间太想你了，攒了好多话想跟你说，还有好多好多抱抱要补给你。
+      <br><br>
+      等我落地了，我们把这段时间错过的都补回来好不好？就当是我们的重逢约会，可不许拒绝哦～
+    </div>
+    <div class="postcard-sign">宝贝 敬上 💕</div>
+  </div>
+
+  <button class="next-btn" data-next>下一页 →</button>
+</section>
+
+<!-- PAGE 3: ACCEPT / REJECT -->
+<section class="page page3" data-page="2">
+  <div class="invite-question">哥哥，你愿意赴约吗？</div>
+  <div class="invite-hint">（友情提示：其中一个按钮不太听话）</div>
+  <div class="invite-btn-zone" id="inviteZone">
+    <button class="accept-btn pulse" id="acceptBtn">当然愿意呀 💕</button>
+    <button class="reject-btn" id="rejectBtn">拒绝</button>
+  </div>
+</section>
+
+<!-- PAGE 4: ACTIVITIES -->
+<section class="page page4" data-page="3">
+  <div class="section-eyebrow">Pick your favorite</div>
+  <div class="section-title">重逢之后想一起做的事</div>
+  <div class="sticker-grid">
+    <div class="sticker">
+      <span class="sticker-icon">🍜</span>
+      <div class="sticker-name">一起吃饭</div>
+      <div class="sticker-desc">补齐这段时间错过的约会</div>
+    </div>
+    <div class="sticker">
+      <span class="sticker-icon">🎬</span>
+      <div class="sticker-name">一起看电影</div>
+      <div class="sticker-desc">窝在一起看部想看很久的片</div>
+    </div>
+    <div class="sticker">
+      <span class="sticker-icon">😴</span>
+      <div class="sticker-name">一起睡觉觉</div>
+      <div class="sticker-desc">好好补一场时差和想念</div>
+    </div>
+    <div class="sticker">
+      <span class="sticker-icon">💡</span>
+      <div class="sticker-name">你的主意</div>
+      <div class="sticker-desc">想去哪儿都可以说</div>
+    </div>
+  </div>
+  <button class="next-btn" data-next>去预约时间 →</button>
+</section>
+
+<!-- PAGE 5: SCHEDULE -->
+<section class="page page5" data-page="4">
+  <div class="schedule-card">
+    <div class="section-eyebrow" style="text-align:center;">Book The Date</div>
+    <div class="section-title" style="text-align:center; margin-bottom:28px;">预约我们的重逢时间</div>
+
+    <div id="formView">
+      <div class="form-group">
+        <label class="form-label">📅 选一个日期</label>
+        <input type="date" id="dateInput">
+      </div>
+      <div class="form-group">
+        <label class="form-label">🕐 选一个时间段</label>
+        <div class="chip-row" id="timeOptions">
+          <div class="chip" data-time="上午">上午</div>
+          <div class="chip" data-time="下午">下午</div>
+          <div class="chip" data-time="晚上">晚上</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">✨ 想做什么（可多选）</label>
+        <div class="chip-row" id="activityOptions">
+          <div class="chip" data-act="吃饭">🍜 吃饭</div>
+          <div class="chip" data-act="看电影">🎬 看电影</div>
+          <div class="chip" data-act="睡觉觉">😴 睡觉觉</div>
+          <div class="chip" data-act="其他">💡 其他</div>
+        </div>
+        <div class="other-input" id="otherInputWrap">
+          <textarea id="otherInput" placeholder="想到什么就写什么～"></textarea>
+        </div>
+      </div>
+      <button class="submit-btn" id="submitBtn">确认这个时间 💕</button>
+      <div class="form-hint">提交后宝贝会在这个页面看到你的回复，也会自动收到一封邮件通知哦</div>
+    </div>
+
+    <div class="confirm-board" id="confirmView">
+      <div class="confirm-check">🎊</div>
+      <div class="confirm-title">时间约好啦！</div>
+      <div class="confirm-detail" id="confirmDetail"></div>
+      <div class="confirm-activities" id="confirmActivities"></div>
+      <div class="confirm-note" id="confirmNote"></div>
+      <div class="confirm-note">宝贝看到之后就来找你啦，到时候见～ 💕</div>
+      <div class="reset-link" id="resetLink">改一下时间</div>
+    </div>
+  </div>
+</section>
+
+<footer>MADE WITH 🩷 FOR 哥哥 · 宝贝马上就要回来啦</footer>
+
+<script>
+(function(){
+  // ---------- Pagination ----------
+  const pages = Array.from(document.querySelectorAll('.page'));
+  const dotsEl = document.getElementById('dots');
+  const backBtn = document.getElementById('backBtn');
+  let current = 0;
+
+  pages.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    dotsEl.appendChild(d);
+  });
+  const dotEls = Array.from(dotsEl.children);
+
+  function goTo(i){
+    if(i < 0 || i >= pages.length) return;
+    pages[current].classList.remove('active');
+    current = i;
+    pages[current].classList.add('active');
+    dotEls.forEach((d, idx) => d.classList.toggle('active', idx === current));
+    backBtn.classList.toggle('show', current > 0);
+    window.scrollTo(0,0);
+  }
+
+  document.querySelectorAll('[data-next]').forEach(btn => {
+    btn.addEventListener('click', () => goTo(current + 1));
+  });
+  backBtn.addEventListener('click', () => goTo(current - 1));
+
+  // ---------- Invite accept / reject ----------
+  const inviteZone = document.getElementById('inviteZone');
+  const acceptBtn = document.getElementById('acceptBtn');
+  const rejectBtn = document.getElementById('rejectBtn');
+  const phrases = [
+    '不可以哦～', '才不许拒绝！', '再想想嘛 🥺', '这个选项是假的',
+    '快按另一个啦', '休想～', '不接受拒绝😤', '爱要勇敢说愿意呀'
+  ];
+  let dodgeCount = 0;
+  const REJECT_MIN_SCALE = 0.32;
+
+  function randomPointIn(zone, btn){
+    const zw = zone.clientWidth, zh = zone.clientHeight;
+    const bw = btn.offsetWidth || 90, bh = btn.offsetHeight || 40;
+    const maxLeft = Math.max(zw - bw, 10);
+    const maxTop = Math.max(zh - bh, 10);
+    return { left: Math.random() * maxLeft, top: Math.random() * maxTop };
+  }
+
+  function showPhrase(){
+    const p = document.createElement('div');
+    p.className = 'reject-phrase';
+    p.textContent = phrases[Math.floor(Math.random() * phrases.length)];
+    const rect = rejectBtn.getBoundingClientRect();
+    const zoneRect = inviteZone.getBoundingClientRect();
+    p.style.left = (rect.left - zoneRect.left + rect.width / 2 - 40) + 'px';
+    p.style.top = (rect.top - zoneRect.top - 26) + 'px';
+    inviteZone.appendChild(p);
+    setTimeout(() => p.remove(), 1000);
+  }
+
+  function dodge(){
+    dodgeCount++;
+    const {left, top} = randomPointIn(inviteZone, rejectBtn);
+    rejectBtn.style.left = left + 'px';
+    rejectBtn.style.top = top + 'px';
+    const scale = Math.max(REJECT_MIN_SCALE, 1 - dodgeCount * 0.09);
+    rejectBtn.style.transform = `scale(${scale}) rotate(${(Math.random()*30-15).toFixed(0)}deg)`;
+    rejectBtn.style.opacity = Math.max(0.35, 1 - dodgeCount * 0.05);
+    showPhrase();
+  }
+
+  rejectBtn.addEventListener('mouseenter', dodge);
+  rejectBtn.addEventListener('click', (e) => { e.preventDefault(); dodge(); });
+  rejectBtn.addEventListener('touchstart', (e) => { e.preventDefault(); dodge(); }, {passive:false});
+
+  acceptBtn.addEventListener('click', () => {
+    acceptBtn.classList.remove('pulse');
+    acceptBtn.textContent = '太好啦！🎉';
+    setTimeout(() => goTo(current + 1), 500);
+  });
+
+  // ---------- Time chip selection ----------
+  let selectedTime = null;
+  document.querySelectorAll('#timeOptions .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('#timeOptions .chip').forEach(c => c.classList.remove('selected'));
+      chip.classList.add('selected');
+      selectedTime = chip.dataset.time;
+    });
+  });
+
+  // ---------- Activity multi-select ----------
+  const selectedActivities = new Set();
+  const otherWrap = document.getElementById('otherInputWrap');
+  document.querySelectorAll('#activityOptions .chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const act = chip.dataset.act;
+      if(selectedActivities.has(act)){
+        selectedActivities.delete(act);
+        chip.classList.remove('selected');
+      } else {
+        selectedActivities.add(act);
+        chip.classList.add('selected');
+      }
+      otherWrap.classList.toggle('show', selectedActivities.has('其他'));
+    });
+  });
+
+  // ---------- Storage helpers ----------
+  async function loadExisting(){
+    try{
+      const res = await window.storage.get('meetup-response', true);
+      if(res && res.value){
+        const data = JSON.parse(res.value);
+        goTo(pages.length - 1);
+        showConfirmation(data);
+      }
+    }catch(e){
+      // no existing response yet, that's fine
+    }
+  }
+
+  function formatDate(dateStr){
+    if(!dateStr) return '';
+    const d = new Date(dateStr + 'T00:00:00');
+    const weekdays = ['周日','周一','周二','周三','周四','周五','周六'];
+    return `${d.getMonth()+1}月${d.getDate()}日 ${weekdays[d.getDay()]}`;
+  }
+
+  function showConfirmation(data){
+    document.getElementById('formView').style.display = 'none';
+    document.getElementById('confirmView').classList.add('show');
+    document.getElementById('confirmDetail').textContent =
+      `${formatDate(data.date)} · ${data.time}`;
+    let actText = (data.activities && data.activities.length) ? data.activities.join(' · ') : '';
+    document.getElementById('confirmActivities').textContent = actText ? `想做的事：${actText}` : '';
+    document.getElementById('confirmNote').textContent = data.note ? `哥哥说：${data.note}` : '';
+  }
+
+  document.getElementById('submitBtn').addEventListener('click', async () => {
+    const date = document.getElementById('dateInput').value;
+    const otherText = document.getElementById('otherInput').value.trim();
+
+    if(!date){ alert('先选一个日期哦～'); return; }
+    if(!selectedTime){ alert('再选一个时间段吧～'); return; }
+    if(selectedActivities.size === 0){ alert('至少选一个想做的事吧～'); return; }
+
+    const activities = Array.from(selectedActivities).map(a => a === '其他' && otherText ? otherText : a);
+    const data = {
+      date, time: selectedTime, activities, note: otherText,
+      respondedAt: new Date().toISOString()
+    };
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = '提交中…';
+
+    try{
+      await window.storage.set('meetup-response', JSON.stringify(data), true);
+      showConfirmation(data);
+
+      // Auto-send the email via Web3Forms — no tap needed on her end.
+      try{
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: '949e715d-2db1-40f5-ae8b-f6b3ab4d1abe',
+            subject: '哥哥预约了见面时间！',
+            from_name: '宝贝的回国邀请页',
+            日期: formatDate(data.date),
+            时间段: data.time,
+            想做的事: activities.join('、') || '（未填写）',
+            留言: data.note || '（无）'
+          })
+        });
+      }catch(mailErr){
+        // ignore — storage already has the data, this is just a bonus channel
+      }
+    }catch(e){
+      alert('提交失败了，再试一次？');
+      btn.disabled = false;
+      btn.textContent = '确认这个时间 💕';
+    }
+  });
+
+  document.getElementById('resetLink').addEventListener('click', () => {
+    document.getElementById('confirmView').classList.remove('show');
+    document.getElementById('formView').style.display = 'block';
+  });
+
+  loadExisting();
+})();
+</script>
+
+</body>
+</html>
